@@ -72,6 +72,10 @@ extension ViewController {
         let coordinates = locationManager?.location?.coordinate
         guard let lat = coordinates?.latitude, let long =  coordinates?.longitude else { return }
         baseDataController.fetchRequest(lat: String(lat), long: String(long))
+        NotificationCenter.default.addObserver(self, selector: #selector(setupUI), name: Notification.Name("CallComp"), object: nil)
+    }
+    
+    @objc func setupUI() {
         self.temperatureViewModel = CurrentTempViewModel(currentTempModel: baseDataController.temperatureModel?.current ?? CurrentTempModel(dictValues: ["": ""]))
         
         guard let dailyWeatherModel = baseDataController.temperatureModel?.dailyTemp else { return }
