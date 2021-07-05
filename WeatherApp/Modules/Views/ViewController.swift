@@ -32,9 +32,11 @@ class ViewController: UIViewController {
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestAlwaysAuthorization()
+        
         locationManager?.requestWhenInUseAuthorization()
     }
 
+    
     // MARK: - IBAction
     @IBAction func submitBtnTapped() {
         if userNameTextField.text == "" {
